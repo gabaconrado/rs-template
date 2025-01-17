@@ -58,6 +58,10 @@ function validate_arg() {
         error "Missing argument '${arg}'"
         exit 1
     fi
+    if [ -z "${possible_values}" ]; then
+        # Early return if no possible values provided
+        return 0
+    fi
     for value in ${possible_values}; do
         if [[ "${ev_arg}" = "${value}" ]]; then
             # Early return if any value matches
@@ -66,6 +70,15 @@ function validate_arg() {
     done
     error "Invalid argument '${arg}' = '${ev_arg}'. Possible values: ${possible_values}"
     exit 2
+}
+
+# Validates that a file exists
+function file_exists() {
+    local path="${1}"
+    if [ ! -f "${path}" ]; then
+        error "File '${path}' not found"
+        exit 3
+    fi
 }
 
 #########################
