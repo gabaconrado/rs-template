@@ -25,7 +25,7 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       # Checkout the source
-      - uses: "actions/checkout@v4"
+      - uses: "actions/checkout@v6"
       # Check the version
       - name: "check version"
         run: "./scripts/ci/check-version.sh '${{ github.ref_name }}'"
@@ -36,7 +36,7 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       # Checkout the source
-      - uses: "actions/checkout@v4"
+      - uses: "actions/checkout@v6"
       # Check the version
       - name: "cargo release"
         run: "cargo publish --token '${{ secrets.CRATES_IO_TOKEN }}'"
@@ -49,7 +49,7 @@ jobs:
       contents: write
     steps:
       # Checkout the source
-      - uses: "actions/checkout@v4"
+      - uses: "actions/checkout@v6"
       # Call the release from GH cli
       - name: "gh release"
         env:
